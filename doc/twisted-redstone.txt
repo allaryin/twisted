@@ -126,14 +126,6 @@ programmed input.
 
 Toggle jacks are crafted by combining a regular jack with a lever.
 
-Pulse Generator
----------------
-A pulse generator is a programmable clock that emits redstone pulses on a
-selected delay of between 50 and 5000 ticks. The pulse generator has facing
-similar to a cable jack.
-
-It is constructed by combining a clock, an uninsulated wire, and a button.
-
 ====
 v2.0
 ====
@@ -148,12 +140,19 @@ Cat3 cable
 PoTR
  - Power over Twisted Redstone
  - Allows sending as many as 3MJ/t over a Cat5 cable, with each 0.5MJ/t of
-   authorized power consuming one 
+   authorized power consuming one channel
+   - Consider support for UE and EU
  - Probably require low resistance wire to make this work
  - PoTR Jack, allows both energy to be input/output and may still function as
    a normal jack.
    - NB: Jacks on both ends of a PoTR signal needn't be programmed to the same
      redstone channel - thus different inputs/outputs may be used for control
+
+Pulse Generator
+ - A pulse generator is a programmable clock that emits redstone pulses on a
+   selected delay of between 50 and 5000 ticks. The pulse generator has facing
+   similar to a cable jack.
+ - It is constructed by combining a clock, an uninsulated wire, and a button.
 
 Toggle Cable
  - Cable with a builtin switch that allows a player (or a redstone signal) to
