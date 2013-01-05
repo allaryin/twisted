@@ -1,0 +1,170 @@
+Twisted Redstone is a mod that provides a superior alternative to the vanilla
+redstone "wiring" mechanic by allowing you to run wires as opposed to
+sprinkling dust on blocks and hoping the signal arcs :)
+
+The mod introduces no worldgen but is Forge ore dictionary aware and can make
+use of certain metals if they are made available.
+
+Single Pair
+-----------
+
+The core item provided by the mod is the redstone wire. Basic single pair wire
+will carry a redstone signal up to 32m from the original source without any
+boosting. Wires may be placed horizontally or vertically, with as many bends as
+necessary to reach the destination.
+
+The recipe for basic wire is a pair of iron bars and six redstone in this
+pattern:
+
++---+---+---+  The end result is 8 units of uninsulated single pair wire.
+| R | R | R |  
++---+---+---+  This wire is grey with red flecks that (ideally) glow when a
+| I |   | I |  signal is being carried. The signal is directional from its
++---+---+---+  origin, and will otherwise interact with adjacent blocks as
+| R | R | R |  normal redstone - but will not transmit a signal through solid
++---+---+---+  blocks.
+
+It is possible to substitute gold or any of the standard Forge metals for iron in this recipe: copper, tin, silver, lead.
+
+NB: A concept of high vs low resistance wire is in the works whereby copper, silver, and gold would produce a higher quality wire than iron, tin, and lead.
+
+Insulation
+----------
+
+A set of twisted pair of wire may be insulated by crafting 8 wire in a circle
+around a unit of insulation (or the insulation may optionally be included in
+the original wire recipe to the same effect).
+
++---+---+---+      +---+---+---+  W = uninsulated wire
+| W | W | W |      | R | R | R |  N = insulation (any)
++---+---+---+      +---+---+---+  R = redstone
+| W | N | W |  or  | I | N | I |  I = iron bar
++---+---+---+      +---+---+---+
+| W | W | W |      | R | R | R |
++---+---+---+      +---+---+---+
+
+Insulation is crafted from a piece of iron fencing placed between two pieces
+of wool. The wool may be either 2 of the same color (resulting in a solid 
+colored wire) or 1 white and 1 of a different color (resulting in a striped
+wire).
+
+Wires of different colors will not normally connect to eachother. They will,
+however, connect to noninsulated wire. Insulated wire will also not connect
+to except at the endpoint (which makes it useful for running a signal past
+something you do not want to accidentally trip). Insulated wire has a range of
+64m (up from the 32m of uninsulated).
+
+Cat5 Cable
+----------
+By combining 8 different colors of wire, one can produce Cat5 cable. This cable
+can carry 8 different signals at once. For traditional reasons, the insullation
+color combinations required to make this class of cable are:
+
+Solid Green, Striped Green, Solid Orange, Striped Orange, Solid Blue, Striped
+Blue, Solid Brown, Striped Brown.
+
+These also happen to use the most common vanilla dyes (cactus, both types of
+flowers, lapis, and cocoa). Because the recipe is so involved, it is shapeless.
+The end result is 4 units of Cat5.
+
+Apart from carrying 8 different channels in parallel, Cat5 behaves largely like
+insulated wire with the exception that it will not connect directly to any
+machine. It will, however splice with any wire that matches its composition,
+and will send that channel's signal down that link.
+
+Cable Jack
+----------
+An RJ45 jack serves as an endpoint to a Cat5 cable and will allow it to connect
+to a machine. The jack may be tuned to an individual channel or to the entire
+signal (though there is not much that can use the whole signal). Jacks have a
+concept of facing and will emit their programmed redstone signal in their
+programmed direction.
+
+It is possible, therefore, to run Cat5 along the back of a row of machines, and
+attach the machines to the cable via a series of jacks, each programmed to a
+different channel of the cable. The machines may then be remotely controlled
+individually.
+
++---+---+---+  Jacks are constructed from glass panels and a single unit of
+|   |   |   |  Cat5 cable. For the recipe, you get two RJ45.
++---+---+---+  
+| G |   | G |
++---+---+---+  G = glass pane
+| G | C | G |  C = cat5 cable
++---+---+---+
+
+Patch Panel
+-----------
+A patch panel is a block with a programmable UI that allows you to splice the
+different wires of a cable together. Thus, it might be possible to cross the
+White-Green and Blue wires as they pass through this block. Every color may
+be spliced with one other color. By splicing them all in sequence, you can
+completely gum up everything ;)
+
++---+---+---+  A single patch panel is made from 6 RJ45 jacks, some uninsulated
+| J | S | J |  wire, and some smooth stone.
++---+---+---+
+| J | W | J |  J = rj45 jack
++---+---+---+  S = smooth stone
+| J | S | J |  W = uninsulated wire
++---+---+---+
+
+Because of the directional nature of twisted redstone signals, the panel may
+be used directionally. Thus, if White-Green splices over to Blue but Blue is
+not configured to splice to outgoing White-Green, an WG signal into the panel
+will emit both WG and Bl but a Bl signal into the panel will only emit Bl on
+the other side.
+
+Toggle Jack
+-----------
+A toggle jack is am RJ45 jack that can receive a redstone signal from another
+source to turn it off and on - every redstone pulse switches its behavior. A
+disabled jack will not emit a signal even when it receives one from its
+programmed input.
+
+Toggle jacks are crafted by combining a regular jack with a lever.
+
+Pulse Generator
+---------------
+A pulse generator is a programmable clock that emits redstone pulses on a
+selected delay of between 50 and 5000 ticks. The pulse generator has facing
+similar to a cable jack.
+
+It is constructed by combining a clock, an uninsulated wire, and a button.
+
+====
+v2.0
+====
+
+Beyond the features listed above, not much is planned seriously other than the
+possibility of some cosmetic or logistical changes.
+
+Cat3 cable
+ - A cheaper alternative to full-blown Cat5. Only uses WG, G, WO, O channels.
+ - Would otherwise function identically
+
+PoTR
+ - Power over Twisted Redstone
+ - Allows sending as many as 3MJ/t over a Cat5 cable, with each 0.5MJ/t of
+   authorized power consuming one 
+ - Probably require low resistance wire to make this work
+ - PoTR Jack, allows both energy to be input/output and may still function as
+   a normal jack.
+   - NB: Jacks on both ends of a PoTR signal needn't be programmed to the same
+     redstone channel - thus different inputs/outputs may be used for control
+
+Toggle Cable
+ - Cable with a builtin switch that allows a player (or a redstone signal) to
+   manually enable/disable it.
+ - PoTR will likewise be disabled.
+
+ComputerCraft integration
+ - Allow computers to either toggle individual channels by name or by numeric
+   bitmask.
+
+Blinkenlights
+ - A block that displays the 8 channels as blinkenlights
+
+Diode Wire/Cable
+ - Wire/Cable that only allows signal to travel one way
+
