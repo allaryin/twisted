@@ -1,4 +1,4 @@
-package org.simud.twisted;
+package twisted;
 
 import java.util.logging.Logger;
 

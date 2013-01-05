@@ -1,4 +1,4 @@
-package org.simud.twisted;
+package twisted;
 
 public class TRVersion {
 	public static final String NAME = "Twisted Redstone";
