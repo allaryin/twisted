@@ -2,6 +2,8 @@ package twisted;
 
 import java.util.logging.Logger;
 
+import twisted.common.Config;
+
 import cpw.mods.fml.common.FMLLog;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Init;
@@ -27,6 +29,10 @@ public class TwistedRedstone {
 	public void preInit(FMLPreInitializationEvent e) {
 		log.setParent(FMLLog.getLogger());
 		log.info(TRVersion.NAME+" - v"+TRVersion.VERSION);
+		
+		Config.instance.load();
+		int wireBlock = Config.instance.getBlock("wire.basic", Config.DEFAULT_BLOCK_PREFIX + 0).getInt();
+		Config.instance.save();
 	}
 	
 	@Init
