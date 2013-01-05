@@ -24,9 +24,11 @@ pattern:
 | R | R | R |  normal redstone - but will not transmit a signal through solid
 +---+---+---+  blocks.
 
-It is possible to substitute gold or any of the standard Forge metals for iron in this recipe: copper, tin, silver, lead.
+It is possible to substitute gold or any of the standard Forge metals for iron
+in this recipe: copper, tin, silver, lead.
 
-NB: A concept of high vs low resistance wire is in the works whereby copper, silver, and gold would produce a higher quality wire than iron, tin, and lead.
+NB: A concept of high vs low resistance wire is in the works whereby copper,
+silver, and gold would produce a higher quality wire than iron, tin, and lead.
 
 Insulation
 ----------
