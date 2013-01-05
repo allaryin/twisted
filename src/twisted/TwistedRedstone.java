@@ -3,6 +3,7 @@ package twisted;
 import java.util.logging.Logger;
 
 import twisted.common.Config;
+import twisted.common.Version;
 import twisted.common.block.BlockWire;
 
 import cpw.mods.fml.common.FMLLog;
@@ -19,18 +20,18 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.registry.GameRegistry;
 
-@Mod(modid = TRVersion.CHANNEL, name = TRVersion.NAME, version = TRVersion.VERSION, dependencies="required-after:Forge@[6.5.0.0,)")
-@NetworkMod(channels = TRVersion.CHANNEL, clientSideRequired = true, serverSideRequired = false) //TODO: connection & packet handlers
+@Mod(modid = Version.CHANNEL, name = Version.NAME, version = Version.VERSION, dependencies="required-after:Forge@[6.5.0.0,)")
+@NetworkMod(channels = Version.CHANNEL, clientSideRequired = true, serverSideRequired = false) //TODO: connection & packet handlers
 public class TwistedRedstone {
-	@Instance(TRVersion.CHANNEL)
+	@Instance(Version.CHANNEL)
 	public static TwistedRedstone instance;
 	
-	public static Logger log = Logger.getLogger(TRVersion.CHANNEL);
+	public static Logger log = Logger.getLogger(Version.CHANNEL);
 	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent e) {
 		log.setParent(FMLLog.getLogger());
-		log.info(TRVersion.NAME+" - v"+TRVersion.VERSION);
+		log.info(Version.NAME+" - v"+Version.VERSION);
 		
 		Config.instance.load();
 		Config.blockWire = new BlockWire( Config.instance.getBlock("wire.basic", Config.DEFAULT_BLOCK_PREFIX + 0).getInt() );
