@@ -52,9 +52,9 @@ wire).
 
 Wires of different colors will not normally connect to eachother. They will,
 however, connect to noninsulated wire. Insulated wire will also not connect
-to except at the endpoint (which makes it useful for running a signal past
-something you do not want to accidentally trip). Insulated wire has a range of
-64m (up from the 32m of uninsulated).
+to machines except at the endpoint (which makes it useful for running a signal
+past something you do not want to accidentally trip). Insulated wire has a
+range of 64m (up from the 32m of uninsulated).
 
 Cat5 Cable
 ----------
@@ -140,13 +140,16 @@ Cat3 cable
 PoTR
  - Power over Twisted Redstone
  - Allows sending as many as 3MJ/t over a Cat5 cable, with each 0.5MJ/t of
-   authorized power consuming one channel
-   - Consider support for UE and EU
- - Probably require low resistance wire to make this work
+   authorized power consuming one channel (6 channels for power, 2 for control)
+   - Alternatively, each powered channel may carry 1.5kW of UE
+   - With a Cat3 cable, only two channels may be used for power
  - PoTR Jack, allows both energy to be input/output and may still function as
    a normal jack.
    - NB: Jacks on both ends of a PoTR signal needn't be programmed to the same
      redstone channel - thus different inputs/outputs may be used for control
+ - Requires low resistance cables, otherwise power transmission will fail
+   - Jack should attempt to detect a full low-resistance link to another jack
+     and display any errors on the ui
 
 Pulse Generator
  - A pulse generator is a programmable clock that emits redstone pulses on a
@@ -158,14 +161,24 @@ Toggle Cable
  - Cable with a builtin switch that allows a player (or a redstone signal) to
    manually enable/disable it.
  - PoTR will likewise be disabled.
+ - Recipe: cable + lever
 
 ComputerCraft integration
  - Allow computers to either toggle individual channels by name or by numeric
    bitmask.
+ - Allow computers to identify the analog strength of the signal arriving over
+   any given channel.
 
 Blinkenlights
  - A block that displays the 8 channels as blinkenlights
+ - Recipe: 8 torches + cable
 
 Diode Wire/Cable
  - Wire/Cable that only allows signal to travel one way
-
++---+---+---+
+|   | G |   |
++---+---+---+
+| G | I | G |  G = glass pane
++---+---+---+  I = iron
+|   | W |   |  W = wire/cable
++---+---+---+
