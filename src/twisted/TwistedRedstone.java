@@ -2,6 +2,7 @@ package twisted;
 
 import java.util.logging.Logger;
 
+import twisted.common.CommonProxy;
 import twisted.common.Config;
 import twisted.common.Version;
 import twisted.common.block.BlockWire;
@@ -13,6 +14,7 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.Mod.PostInit;
 import cpw.mods.fml.common.Mod.PreInit;
 import cpw.mods.fml.common.Mod.ServerStarting;
+import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -28,6 +30,9 @@ public class TwistedRedstone {
 	
 	public static Logger log = Logger.getLogger(Version.CHANNEL);
 	
+	@SidedProxy(clientSide = "twisted.client.ClientProxy", serverSide = "twisted.common.CommonProxy")
+	public static CommonProxy proxy;
+	
 	@PreInit
 	public void preInit(FMLPreInitializationEvent e) {
 		log.setParent(FMLLog.getLogger());
@@ -39,10 +44,14 @@ public class TwistedRedstone {
 		
 		// TODO: register blocks
 		// GameRegistry.registerBlock(Config.blockWire, ItemBlockWire.class, "Twisted Redstone Wire");
+		
+		proxy.preInit();
 	}
 	
 	@Init
 	public void init(FMLInitializationEvent e) {
+		proxy.init();
+		
 		// TODO: register things
 		// TODO: init localization
 	}
